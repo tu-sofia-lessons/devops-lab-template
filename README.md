@@ -1,8 +1,8 @@
-# Notes API — учебно приложение за курса по DevOps
+# Notes API: учебно приложение за курса по DevOps
 
 **Български** · [English](#notes-api--devops-course-starter-app)
 
-Малко приложение за бележки, написано на Python с FastAPI. То е отправната точка за всички упражнения в курса: в него ще добавяте контейнери, база данни, автоматични проверки, внедряване и т.н. Самото приложение нарочно е просто — целта на курса е всичко около него.
+Малко приложение за бележки, написано на Python с FastAPI. То е отправната точка за всички упражнения в курса: в него ще добавяте контейнери, база данни, автоматични проверки, внедряване и т.н. Самото приложение нарочно е просто: целта на курса е всичко около него.
 
 Данните засега се пазят в паметта и се губят при рестарт. База данни ще добавим в упражнение 4.
 
@@ -48,7 +48,7 @@ pip install -r requirements-dev.txt
 uvicorn app.main:app --reload
 ```
 
-Приложението е на http://127.0.0.1:8000, а автоматично генерираната документация — на http://127.0.0.1:8000/docs.
+Приложението е на http://127.0.0.1:8000, а автоматично генерираната документация е на http://127.0.0.1:8000/docs.
 
 Тестове и проверка на стила на кода:
 
@@ -65,11 +65,11 @@ ruff check .
 
 ---
 
-# Notes API — DevOps course starter app
+# Notes API: DevOps course starter app
 
 [Български](#notes-api--учебно-приложение-за-курса-по-devops) · **English**
 
-A small notes application written in Python with FastAPI. It is the starting point for every lab in the course: you will add containers, a database, automated checks, deployment and more around it. The app itself is deliberately simple — the course is about everything around it.
+A small notes application written in Python with FastAPI. It is the starting point for every lab in the course: you will add containers, a database, automated checks, deployment and more around it. The app itself is deliberately simple: the course is about everything around it.
 
 Data is kept in memory for now and is lost on restart. A database comes in Lab 4.
 
