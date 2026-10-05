@@ -14,3 +14,4 @@ class Note(BaseModel):
     id: int
     title: str
     body: str
+    category: str | None = None  # set by the ML model when one is loaded (Lab 10)

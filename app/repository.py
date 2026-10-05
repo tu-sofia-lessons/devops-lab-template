@@ -19,8 +19,8 @@ class InMemoryNoteRepository:
     def get(self, note_id: int) -> Note | None:
         return self._notes.get(note_id)
 
-    def add(self, data: NoteCreate) -> Note:
-        note = Note(id=self._next_id, title=data.title, body=data.body)
+    def add(self, data: NoteCreate, category: str | None = None) -> Note:
+        note = Note(id=self._next_id, title=data.title, body=data.body, category=category)
         self._notes[note.id] = note
         self._next_id += 1
         return note
@@ -50,29 +50,32 @@ class PostgresNoteRepository:
                 " title VARCHAR(100) NOT NULL,"
                 " body TEXT NOT NULL DEFAULT '')"
             )
+            conn.execute("ALTER TABLE notes ADD COLUMN IF NOT EXISTS category VARCHAR(50)")
             conn.commit()
             self._table_ready = True
         return conn
 
     def list(self) -> list[Note]:
         with self._connect() as conn:
-            rows = conn.execute("SELECT id, title, body FROM notes ORDER BY id").fetchall()
-        return [Note(id=r[0], title=r[1], body=r[2]) for r in rows]
+            rows = conn.execute(
+                "SELECT id, title, body, category FROM notes ORDER BY id"
+            ).fetchall()
+        return [Note(id=r[0], title=r[1], body=r[2], category=r[3]) for r in rows]
 
     def get(self, note_id: int) -> Note | None:
         with self._connect() as conn:
             row = conn.execute(
-                "SELECT id, title, body FROM notes WHERE id = %s", (note_id,)
+                "SELECT id, title, body, category FROM notes WHERE id = %s", (note_id,)
             ).fetchone()
-        return Note(id=row[0], title=row[1], body=row[2]) if row else None
+        return Note(id=row[0], title=row[1], body=row[2], category=row[3]) if row else None
 
-    def add(self, data: NoteCreate) -> Note:
+    def add(self, data: NoteCreate, category: str | None = None) -> Note:
         with self._connect() as conn:
             row = conn.execute(
-                "INSERT INTO notes (title, body) VALUES (%s, %s) RETURNING id",
-                (data.title, data.body),
+                "INSERT INTO notes (title, body, category) VALUES (%s, %s, %s) RETURNING id",
+                (data.title, data.body, category),
             ).fetchone()
-        return Note(id=row[0], title=data.title, body=data.body)
+        return Note(id=row[0], title=data.title, body=data.body, category=category)
 
     def ping(self) -> bool:
         try:

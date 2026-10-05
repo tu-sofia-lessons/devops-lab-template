@@ -12,6 +12,7 @@
 |-------|-------|----------|
 | GET | `/health` | Проверка дали приложението работи: `{"status": "ok"}` |
 | GET | `/ready` | Готово ли е да обслужва: проверява базата; 503, ако не я достига |
+| GET | `/model` | Кой ML модел е зареден (`MODEL_PATH`); без модел бележките са без категория (Упражнение 10) |
 | GET | `/version` | Версията от променливата на средата `APP_VERSION` (по подразбиране `0.1.0`) |
 | GET | `/notes` | Списък с всички бележки |
 | POST | `/notes` | Създава бележка. `title` е задължително (от 1 до 100 знака), `body` не е |
@@ -32,7 +33,9 @@ app/
   main.py         # адресите на приложението
   models.py       # описание на данните (Pydantic)
   repository.py   # съхранение на бележките: в паметта или в PostgreSQL
+  classifier.py   # ML модел за категория на бележката (по желание, Упражнение 10)
 tests/            # тестове с pytest
+ml/               # етикирани бележки за Упражнение 10 (MLOps)
 docs/             # документация на услугата (Упражнение 2)
 mkdocs.yml        # сайт от документацията: `pip install -r requirements-docs.txt`, после `mkdocs serve`
 ```
@@ -80,6 +83,7 @@ Without the `DATABASE_URL` variable, notes are kept in memory and lost on restar
 |--------|------|-------------|
 | GET | `/health` | Liveness check: `{"status": "ok"}` |
 | GET | `/ready` | Ready to serve: checks the database; 503 if it cannot be reached |
+| GET | `/model` | Which ML model is loaded (`MODEL_PATH`); without a model, notes have no category (Lab 10) |
 | GET | `/version` | Version from the `APP_VERSION` environment variable (default `0.1.0`) |
 | GET | `/notes` | List all notes |
 | POST | `/notes` | Create a note. `title` is required (1 to 100 characters), `body` is optional |
@@ -100,7 +104,9 @@ app/
   main.py         # the app's endpoints
   models.py       # data shapes (Pydantic)
   repository.py   # note storage: in memory or in PostgreSQL
+  classifier.py   # ML model for the note's category (optional, Lab 10)
 tests/            # pytest tests
+ml/               # labelled notes for Lab 10 (MLOps)
 docs/             # service documentation (Lab 2)
 mkdocs.yml        # a site from the docs: `pip install -r requirements-docs.txt`, then `mkdocs serve`
 ```

@@ -3,6 +3,7 @@ from typing import Annotated
 
 from fastapi import Depends, FastAPI, HTTPException, Response
 
+from app.classifier import Classifier, load_classifier
 from app.models import Note, NoteCreate
 from app.repository import InMemoryNoteRepository, PostgresNoteRepository
 
@@ -27,6 +28,16 @@ def get_repository() -> NoteRepository:
 
 
 Repository = Annotated[NoteRepository, Depends(get_repository)]
+
+# With MODEL_PATH a trained model assigns a category to new notes (Lab 10); without it, none.
+_classifier = load_classifier()
+
+
+def get_classifier() -> Classifier | None:
+    return _classifier
+
+
+Model = Annotated[Classifier | None, Depends(get_classifier)]
 
 
 @app.get("/health")
@@ -54,8 +65,15 @@ def list_notes(repo: Repository) -> list[Note]:
 
 
 @app.post("/notes", status_code=201)
-def create_note(data: NoteCreate, repo: Repository) -> Note:
-    return repo.add(data)
+def create_note(data: NoteCreate, repo: Repository, model: Model) -> Note:
+    category = model.predict(f"{data.title} {data.body}".strip()) if model else None
+    return repo.add(data, category)
+
+
+@app.get("/model")
+def model_info(model: Model) -> dict[str, str | None]:
+    """Which model file is loaded, if any."""
+    return {"model": model.path if model else None}
 
 
 @app.get("/notes/{note_id}")

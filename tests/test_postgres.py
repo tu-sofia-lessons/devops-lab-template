@@ -20,5 +20,11 @@ def test_notes_are_stored_in_postgres():
     assert repo.get(999999) is None
 
 
+def test_category_is_stored():
+    repo = PostgresNoteRepository(DSN)
+    note = repo.add(NoteCreate(title="buy milk"), category="shopping")
+    assert repo.get(note.id).category == "shopping"
+
+
 def test_ping_is_false_when_database_is_unreachable():
     assert not PostgresNoteRepository("postgresql://x:y@127.0.0.1:1/none").ping()

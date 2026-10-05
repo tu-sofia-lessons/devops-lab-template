@@ -7,7 +7,7 @@ def test_list_notes_empty(client):
 def test_create_note(client):
     response = client.post("/notes", json={"title": "First", "body": "Hello"})
     assert response.status_code == 201
-    assert response.json() == {"id": 1, "title": "First", "body": "Hello"}
+    assert response.json() == {"id": 1, "title": "First", "body": "Hello", "category": None}
 
 
 def test_create_note_without_body(client):
