@@ -3,6 +3,5 @@
 Closes #
 
 ## Checklist / Проверка
-- [ ] A test for the new behaviour / Тест за новото поведение
-- [ ] `pytest` and `ruff check .` pass locally / минават локално
 - [ ] A line in `CHANGELOG.md` under "Unreleased" / Ред в `CHANGELOG.md` под „Unreleased“
+- [ ] If code changed: a test, and `pytest` and `ruff check .` pass / Ако е променян код: тест, и `pytest` и `ruff check .` минават
