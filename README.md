@@ -61,7 +61,7 @@ ruff check .
 
 ## Упражнение 2: работа в екип
 
-В Упражнение 2 кодът не се пипа. Работи се върху документацията в папка `docs/`: описание на услугата, runbook, решения и дежурства. Стъпките са в страницата на упражнението в Moodle.
+В Упражнение 2 кодът не се пипа. Работи се по двойки върху документацията в папка `docs/`. Задачите са в [BACKLOG.bg.md](BACKLOG.bg.md).
 
 ---
 
@@ -128,4 +128,4 @@ ruff check .
 
 ## Lab 2: teamwork
 
-In Lab 2 the code is not touched. You work on the documentation in the `docs/` folder: the service description, the runbook, decisions and on-call. The steps are on the lab page in Moodle.
+In Lab 2 the code is not touched. You work in pairs on the documentation in the `docs/` folder. The tasks are in [BACKLOG.en.md](BACKLOG.en.md).

@@ -1,6 +1,6 @@
 # Service / Услугата
 
-> Lab 2, round 1. Fill in every TODO. / Упражнение 2, кръг 1. Попълнете всяко TODO.
+> Fill in every TODO. / Попълнете всяко TODO.
 
 ## Purpose / Предназначение
 

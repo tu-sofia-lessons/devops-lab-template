@@ -1,6 +1,6 @@
 # Runbook
 
-> Lab 2, round 1. Fill in every TODO with exact commands. / Упражнение 2, кръг 1. Попълнете всяко TODO с точни команди.
+> Fill in every TODO with exact commands. / Попълнете всяко TODO с точни команди.
 
 ## Start locally / Локално стартиране
 

@@ -4,7 +4,8 @@ Documentation of the service, kept next to the code and published as a site. / �
 
 - [Service / Услугата](service.md)
 - [Runbook](runbook.md)
-- [Decisions / Решения](decisions.md)
+- [Glossary / Речник](glossary.md)
+- [Decisions / Решения](adr/index.md)
 - [On-call / Дежурства](oncall.md)
 
 Preview locally / Локален преглед:
