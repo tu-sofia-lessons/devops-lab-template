@@ -3,5 +3,5 @@
 Closes #
 
 ## Checklist / Проверка
-- [ ] A line in `CHANGELOG.md` under "Unreleased" / Ред в `CHANGELOG.md` под „Unreleased“
+- [ ] My partner is asked to review / Партньорът е поканен за ревю
 - [ ] If code changed: a test, and `pytest` and `ruff check .` pass / Ако е променян код: тест, и `pytest` и `ruff check .` минават
