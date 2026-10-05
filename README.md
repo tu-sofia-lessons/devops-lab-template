@@ -4,13 +4,14 @@
 
 Малко приложение за бележки, написано на Python с FastAPI. То е отправната точка за всички упражнения в курса: в него ще добавяте контейнери, база данни, автоматични проверки, внедряване и т.н. Самото приложение нарочно е просто: целта на курса е всичко около него.
 
-Данните засега се пазят в паметта и се губят при рестарт. База данни ще добавим в упражнение 4.
+Без променливата `DATABASE_URL` бележките се пазят в паметта и се губят при рестарт. С нея (например `postgresql://notes:secret@db:5432/notes`) се пазят в PostgreSQL; това е Упражнение 4.
 
 ## Какво може приложението
 
 | Метод | Адрес | Описание |
 |-------|-------|----------|
 | GET | `/health` | Проверка дали приложението работи: `{"status": "ok"}` |
+| GET | `/ready` | Готово ли е да обслужва: проверява базата; 503, ако не я достига |
 | GET | `/version` | Версията от променливата на средата `APP_VERSION` (по подразбиране `0.1.0`) |
 | GET | `/notes` | Списък с всички бележки |
 | POST | `/notes` | Създава бележка. `title` е задължително (от 1 до 100 знака), `body` не е |
@@ -30,7 +31,7 @@ curl -X POST http://127.0.0.1:8000/notes \
 app/
   main.py         # адресите на приложението
   models.py       # описание на данните (Pydantic)
-  repository.py   # съхранение на бележките (засега в паметта)
+  repository.py   # съхранение на бележките: в паметта или в PostgreSQL
 tests/            # тестове с pytest
 docs/             # документация на услугата (Упражнение 2)
 mkdocs.yml        # сайт от документацията: `pip install -r requirements-docs.txt`, после `mkdocs serve`
@@ -71,13 +72,14 @@ ruff check .
 
 A small notes application written in Python with FastAPI. It is the starting point for every lab in the course: you will add containers, a database, automated checks, deployment and more around it. The app itself is deliberately simple: the course is about everything around it.
 
-Data is kept in memory for now and is lost on restart. A database comes in Lab 4.
+Without the `DATABASE_URL` variable, notes are kept in memory and lost on restart. With it (e.g. `postgresql://notes:secret@db:5432/notes`) they are kept in PostgreSQL; that is Lab 4.
 
 ## What the app does
 
 | Method | Path | Description |
 |--------|------|-------------|
 | GET | `/health` | Liveness check: `{"status": "ok"}` |
+| GET | `/ready` | Ready to serve: checks the database; 503 if it cannot be reached |
 | GET | `/version` | Version from the `APP_VERSION` environment variable (default `0.1.0`) |
 | GET | `/notes` | List all notes |
 | POST | `/notes` | Create a note. `title` is required (1 to 100 characters), `body` is optional |
@@ -97,7 +99,7 @@ curl -X POST http://127.0.0.1:8000/notes \
 app/
   main.py         # the app's endpoints
   models.py       # data shapes (Pydantic)
-  repository.py   # note storage (in memory for now)
+  repository.py   # note storage: in memory or in PostgreSQL
 tests/            # pytest tests
 docs/             # service documentation (Lab 2)
 mkdocs.yml        # a site from the docs: `pip install -r requirements-docs.txt`, then `mkdocs serve`
