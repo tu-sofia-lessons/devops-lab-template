@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environment
+.venv/
+venv/
+
+# Environment files
+.env
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+
+# Local notes
+.claude/
