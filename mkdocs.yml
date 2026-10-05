@@ -1,0 +1,18 @@
+site_name: Notes API
+site_description: Service documentation for the DevOps course labs
+docs_dir: docs
+theme:
+  name: material
+  features:
+    - content.code.copy
+nav:
+  - Home: index.md
+  - Service: service.md
+  - Runbook: runbook.md
+  - Decisions: decisions.md
+  - On-call: oncall.md
+markdown_extensions:
+  - tables
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences

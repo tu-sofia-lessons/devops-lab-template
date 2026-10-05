@@ -33,6 +33,7 @@ app/
   repository.py   # съхранение на бележките (засега в паметта)
 tests/            # тестове с pytest
 docs/             # документация на услугата (Упражнение 2)
+mkdocs.yml        # сайт от документацията: `pip install -r requirements-docs.txt`, после `mkdocs serve`
 ```
 
 ## Локално стартиране
@@ -99,6 +100,7 @@ app/
   repository.py   # note storage (in memory for now)
 tests/            # pytest tests
 docs/             # service documentation (Lab 2)
+mkdocs.yml        # a site from the docs: `pip install -r requirements-docs.txt`, then `mkdocs serve`
 ```
 
 ## Running locally

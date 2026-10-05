@@ -21,3 +21,6 @@ venv/
 
 # Local notes
 .claude/
+
+# MkDocs build output
+site/
